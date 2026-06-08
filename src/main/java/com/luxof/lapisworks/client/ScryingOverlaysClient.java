@@ -21,6 +21,7 @@ import static com.luxof.lapisworks.Lapisworks.prettifyFloat;
 import static com.luxof.lapisworks.LapisworksIDs.SCRYING_MIND_END;
 import static com.luxof.lapisworks.LapisworksIDs.SCRYING_MIND_START;
 
+import com.luxof.lapisworks.items.MediaCondenserItem;
 import com.mojang.datafixers.util.Pair;
 
 import java.util.List;
@@ -49,16 +50,10 @@ public class ScryingOverlaysClient {
         );
     }
     private static Pair<ItemStack, Text> displayMediaWithCap(long amount, long cap) {
+
         return new Pair<>(
             new ItemStack(HexItems.AMETHYST_DUST),
-            Text.translatable(
-
-                "render.lapisworks.scryinglens.dust_with_cap",
-                String.valueOf((double)amount / (double)cap * 100.0),
-                (double)amount / (double)MediaConstants.DUST_UNIT,
-                (double)cap / (double)MediaConstants.DUST_UNIT
-
-            ).formatted(Formatting.LIGHT_PURPLE)
+                MediaCondenserItem.mediaTooltip(amount, cap).formatted(Formatting.LIGHT_PURPLE)
         );
     }
     private static Pair<ItemStack, Text> displayTunedFrequency(Text iota) {
